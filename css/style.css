@@ -1,0 +1,301 @@
+/* Font Dependencies */
+@font-face {
+    font-family: "Uncut";
+    src: url('../fonts/Uncut-Sans-Regular.woff');
+    src: url('..//fonts/Uncut-Sans-Regular.woff2');
+    weight: 400;
+  }
+
+@font-face {
+    font-family: "Giphurs";
+    src: url('../fonts/Giphurs-Regular.woff2');
+    weight: 400;
+}
+
+@font-face {
+    font-family: "Panamera";
+    src: url('../fonts/Panamera-Regular.woff') format("woff");
+    src: url('../fonts/Panamera-Regular.woff2') format("woff2");
+    weight: 400;
+}
+
+/* Browser Reset */
+
+* {
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+}
+
+/* CSS Variables */
+
+:root {
+
+    --font-fallback: "UncutReg", "Helvetica Neue", sans-serif;
+  
+    --c-bg-color: #ffffff;
+    --c-primary-color: #ffffff;
+    --c-secondary-color: #101010;
+    --c-tertiary-color: #838383;
+    --c-tertiary-color-light: #eeeded;
+    --c-debug-color: #0d00ff;
+  
+    --font-h2: 2.441rem;
+    --font-h3: 1.953rem;
+    --font-h4: 1.536rem;
+    --font-h5: 1.25rem;
+    --font-h6: 1rem;
+
+    --font-1: sans-serif;
+  
+}
+
+/* General Classes */
+
+body {
+    /* background-color: var(--c-bg-color); */
+    color: var(--c-secondary-color);
+    font-size: 1vw;
+    /* Scroll Bounce */ 
+    overscroll-behavior: none;
+    overflow: hidden;
+
+}
+
+main { 
+    min-width: 100svw;
+    min-height: 100svh;
+    width: 100%;
+    padding: 1rem;
+}
+
+header {
+    position: sticky;
+    top: 0;
+    height: 60px;
+    padding: 1rem 1rem;
+    z-index: 10;
+   
+    /* mix-blend-mode: difference; */
+    
+    /* for positioning text, links, etc */
+}
+
+/* Utitlity Classes */
+
+.full-width {
+    height: calc(100svh - 60px);
+    width: 100svw;
+}
+
+.centered {
+    display: grid;
+    place-content: center;
+}
+
+.gradient-bg {
+    background: radial-gradient(ellipse at right bottom, #EEB1BF 5%, #2dd443 25%, #c9db22 50%, #5257ea 100%);
+}
+
+/* Custom Classes */
+
+.text {
+    font-size: var(--font-h2);
+    font-family: var(--font-1)
+}
+
+.header__container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header__logo-btn {
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 1rem;
+    padding: 0.5rem;
+
+}
+
+/* MOVING EYES */
+
+.move-area{/*normally use body*/
+    width: 100vw;
+    height: 100vh;
+  }
+  .eye {
+    position: relative;
+    display: inline-block;
+    border-radius: 50%;
+    height: 24px;
+    width: 24px;
+    background: var(--c-primary-color);
+    border: 1px var(--c-secondary-color) solid;
+  }
+  .eye:after { /*pupil*/
+    position: absolute;
+    bottom: 12px;
+    right: 6px;
+    width: 6px;
+    height: 6px;
+    background: #000;
+    border-radius: 50%;
+    content: " ";
+  }
+
+.btn {
+    border: solid 1px var(--c-secondary-color);
+    border-radius: 12rem;
+    padding: .5rem 1.25rem;
+    font-size: 1rem;
+    background-color:var(--c-primary-color)
+}
+
+.btn a {
+    text-decoration: none;
+    color: var(--c-secondary-color);
+}
+
+.main-section {
+    height: calc(100svh - 60px);
+    width: 100svw;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 1rem;;
+}
+
+/* QUESTION CONTAINER */
+
+.qstn-container {
+    width: 100%;
+    height: 20%;
+    display: grid;
+    place-items: center;
+}
+
+.qstn-container__title {
+    font-size: 6rem;
+    font-family: sans-serif;
+    text-transform: uppercase;
+    color: var(--c-secondary-color);
+}
+
+.blurry-text {
+    text-shadow: 0 0 4px rgb(0, 0, 0);
+    color: transparent;
+ }
+
+/* ENTER BUTTONS */
+
+.enter-container {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    column-gap: 1rem;
+    padding: 1rem 1rem;
+}
+
+.enter-btn {
+    width: 100%;
+    height: 100%;
+    font-size: 12rem;
+    text-shadow: 0 0 4px white;
+    border: none;
+    background: none;
+
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.11);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.enter-btn a {
+    text-decoration: none;
+}
+
+.enter-btn:hover {
+    border: solid var(--c-secondary-color) 0.5px;
+}
+
+/* OVERLAY */
+
+.overlay {
+    position: absolute;
+    z-index: 99;
+    top: 94svh;
+    height: 46svh;
+    width: 99svw;
+    background: var(--c-primary-color);
+    border-radius: 4rem;
+    left: 0.5rem;
+    border: 1px solid var(--c-secondary-color);
+    text-transform: uppercase;
+
+    /* Color */
+        /* From https://css.glass */
+        background: rgba(255, 255, 255, 0.11);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+
+    /* Layout Inside */
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+
+    /* Animation */
+    transition: 2s ease-in-out;
+
+}
+
+.overlay.active {
+    top: 56svh;
+}
+
+.overlay__title {
+    width: 100%;
+    height: 4rem;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    font-family: var(--font-1);
+    cursor: pointer;
+
+}
+
+.overlay__input-container {
+    padding: 0 1rem;
+    justify-items: baseline;
+}
+
+.overlay__input-container select {
+    font-size: 2rem;
+}
+
+.overlay__input-container input {
+    height: 2rem;
+    width: 4rem;
+    background: var(--c-primary-color);
+    border-radius: .5rem;
+}
+
+.overlay p {
+    font-size: 2rem;
+}
+
+/* STYLES FOR THE DESIGN */
+
+.typealien {
+    font-family: serif;
+}
+
+.typehuman {
+    font-family: sans-serif;
+}
