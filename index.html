@@ -1,14 +1,17 @@
-<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-    <title>title</title>
+    <title>CO - LAB</title>
     <meta name="author" content="name" />
     <meta name="description" content="description here" />
     <meta name="keywords" content="keywords, here" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon/favicon.svg">
+    <link rel="icon" type="image/png" href="/assets/favicon/favicon.png">
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="./css/style.css" />
@@ -16,43 +19,79 @@
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   </head>
+    <body id="body">
 
-<body class="gradient-bg">
+        <navigation></navigation>
 
-  <header>
-    <div class="header__container">
-      <button class="btn header__btn"> <a href="/info.html">Info</a></button>
-      <button class="btn header__logo-btn"><a href="/index.html">
-        <p>CO – LAB</p>
-        <div class='.container'>
-          <div class='eye'></div>
-          <div class='eye'></div>
+        <header>
+            <div class="header__container">
+              <button class="btn header__btn"> Info</button>
+              <button class="btn header__logo-btn">
+                <p>CO – LAB</p>
+                <div class='.container'>
+                  <div class='eye'></div>
+                  <div class='eye'></div>
+                </div>
+              </button>
+              <button class="btn header__user-counter"> 1 USER</button>
+            </div>
+          </header>
+        
+    <section class="move-area">
+
+        <div class="overlay">
+            <div class="overlay__title">
+                <h3 class="expand">About this Project</h3>
+            </div>
+            <div class="overlay__input-container">
+                <div class="overlay__input">
+                    <p>
+                      There can only be 2 users on this page. 
+                      There are things you can change and there are things the other user can change. 
+                      Build the visual appearance of this page collaboratively. 
+                      Feel Free to experiment.
+                      This website is a work in progess.  
+                    </p>
+                    </p>
+                </div>
+            </div>
         </div>
-      </a>
-    </button>
-      <button class="btn header__user-counter"> 1 USER</button>
+
+        <section class="start-section glass" id="start">
+
+            <div class="qstn-container">
+              <h1 class="qstn-container__title blurry-text">Who are you?</h1>
+            </div>
+          
+            <div class="enter-container">
+              <button class="btn enter-btn" onclick="enterSection()">A</button>
+              <button class="btn enter-btn" onclick="enterSection()">B</button>
+            </div>
+        </section>
+
+        <main class="main" id="main">
+
+            <div class="">
+              <p class="text hidden" id="textarea">
+                <span id="sentence-1" onclick="changeType()">Do you want to let people enter text and save it to a database in the cloud?</span> All of these options touch on different infrastructure layers of the web.
+                There's a data layer. There's a security layer. <span id="word-1">There's a visual design layer.</span> There's a hypertext layer that links to other locations. There's an authentication layer. There's an algorithmic layer.
+                Almost all of these layers are completely invisible to “end users” of the web. They just see a flat static page. There is no topography. There is no transparency to how this website is structured or built. You don't know what other websites it's connected it, or where it's pulling data in from. The amount of technical literacy you need to even begin to see these layers is non-trivial.
+                <br> Maggie Appleton, https://maggieappleton.com/metaphors-web
+              </p>
+            </div>
+        </main>
+    </section>
+ 
+    <div class="bottom-bar glass">
+        <input class="colorpick" type="color" value="#FFFFFF" id="colorBg">
+        <input class="slider" type="range" min=".1" max="50" class="slider" id="rangeHeight">
+        <input class="slider" type="range" min=".5" max="100" class="slider" id="rangeSize">
+        <input class="colorpick" type="color" value="#000000" id="colorText">
+        <input class="btn" type="submit" id="submit-btn" value="COLLABORATE">
     </div>
-</header>
-
-<section class="move-area">
-
-<main class="main">
-
-  <section class="main-section">
-
-  <div class="qstn-container">
-    <h1 class="qstn-container__title blurry-text">Who are you?</h1>
-  </div>
-
-  <div class="enter-container">
-    <button class="btn enter-btn"><a href="/user-1.html">A</a></button>
-    <button class="btn enter-btn"><a href="/user-2.html"></a>B</a></button>
-  </div>
-  </section>
-  </main>
-
-  </section>
-</section>
-  <script src="./js/main.js" async defer></script>
-  </body>
+        
+    
+        <script src="../js/main.js" async defer></script>
+        <script type="module" src="../js/firebase.js" async defer></script>
+    </body>
 </html>

@@ -19,10 +19,9 @@ function loadDoc() {
 /* MOVING MOUSE JS */
 
 //This is a pen based off of Codewoofy's eyes follow mouse. It is just cleaned up, face removed, and then made to be a little more cartoony. https://codepen.io/Codewoofy/pen/VeBJEP
-
 $(".move-area").mousemove(function(event) {
   var eye = $(".eye");
-  console.log('eye', eye)
+  //console.log('eye', eye)
   var x = (eye.offset().left) + (eye.width() / 2);
   var y = (eye.offset().top) + (eye.height() / 2);
   var rad = Math.atan2(event.pageX - x, event.pageY - y);
@@ -46,10 +45,30 @@ expand.addEventListener('click', () => {
   
 })
 
+/* FUNCTIONS */
+
+function changeType() {
+
+  var element = document.getElementById("sentence-1");
+  element.classList.add("typealien");
+
+}
+
+function enterSection() {
+
+  var start = document.getElementById("start");
+  start.style.display = "none";
+  console.log(start);
+}
+
+// VALUE STUFF
+
 /* Getting Values from Data */
+
+/*
 function getResults() {
 
-/* SPECIES */
+/* SPECIES 
 
 var e = document.getElementById("species");
 var value = e.value;
@@ -68,19 +87,42 @@ if (e.value == "alien") {
 
 }
 
-/* COLOR */
+*/
 
-var c = document.getElementById("color");
+/*
+
+// COLOR 
+
+var c = document.getElementById("colorBg");
 var cvalue = c.value;
-console.log(cvalue);
+console.log("color bg main js" + " " + cvalue);
 
 document.body.style.backgroundColor = cvalue;
 
+// RANGE HEIGHT 
+var r = document.getElementById("rangeHeight");
+var rvalue = r.value / 10;
+console.log("range height main.js" + " " + rvalue);
+
+document.getElementById('textarea').style.lineHeight = rvalue + "rem";
+
+
+// RANGE SIZE
+var rs = document.getElementById("rangeSize");
+var rsvalue = rs.value / 10;
+console.log("from main" + " " + rsvalue);
+
+document.getElementById('textarea').style.fontSize = rsvalue + "rem";
+
+
+// COLOR TEXT 
+var ct = document.getElementById("colorText");
+var ctvalue = ct.value;
+console.log("color text main js" + " " + ctvalue);
+
+document.body.style.color = ctvalue;
 }
 
+*/
 
 
-
-
-
-/* FUNCTIONS */
