@@ -180,7 +180,7 @@ const unsubscribeLetterUpdates = onSnapshot(
     const letterSpaceTrans = letterSpaceData.value;
     console.log("FONTSIZE DB: " + letterSpaceTrans);
 
-    document.getElementById('textarea').style.letterSpacing = letterSpaceTrans;
+    document.getElementById('textarea').style.letterSpacing = letterSpaceTrans + "rem";
     document.getElementById('rangeLetter').value = letterSpaceTrans;
   }
 );
