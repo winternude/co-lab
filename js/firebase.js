@@ -214,7 +214,7 @@ const submitBtn = document.getElementById('submit-btn');
 
 
 // VARIABLE FOR data value
-const eventTrigger = 'click';
+const eventTrigger = 'click';/* 'input';*/
 
 // CHANGE VALUE
 const backgroundColorInput = document.getElementById('colorBg');
@@ -291,3 +291,23 @@ colorValueIdInput.addEventListener('submit', (event) => {
     console.log(colorId);
 
 });
+
+var currentUsers = 0;
+const userCounter = document.getElementById('userCounter');
+
+// TRACKING USERS
+window.onload = function() {
+  console.log("User entered the website");
+  currentUsers++;
+  console.log(currentUsers);
+  userCounter.innerHTML = currentUsers;
+
+  // Additional tracking logic or actions can be performed here
+};
+
+window.onbeforeunload = function() {
+  console.log("User is leaving the website");
+  currentUsers--;
+  // Additional tracking logic or actions can be performed here
+  return null; // This is required to prevent a browser-specific prompt
+};
