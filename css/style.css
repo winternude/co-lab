@@ -338,7 +338,7 @@ header {
 .bottom-bar {
     position: absolute;
     z-index: 98;
-    bottom: 5rem;
+    bottom: 4rem;
     width: 98%;
     left: 1rem;
     border-radius: 2rem;
