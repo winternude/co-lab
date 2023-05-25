@@ -151,6 +151,41 @@ const unsubscribeSizeUpdates = onSnapshot(
   }
 );
 
+// TEXT SPACING UPDATES
+const spacingOutput = document.getElementById('rangeSpace');
+const unsubscribeSpacingUpdates = onSnapshot(
+  doc(db, 'data', 'textspacing'),
+  (doc) => {
+    // get data from document snapshot
+    const textSpaceData = doc.data();
+    const textSpace = doc.data
+
+    const textSpaceTrans = textSpaceData.value;
+    console.log("FONTSIZE DB: " + textSpaceTrans);
+
+    document.getElementById('textarea').style.wordSpacing = textSpaceTrans + "rem";
+    document.getElementById('rangeSpace').value = textSpaceTrans;
+  }
+);
+
+// TEXT LETTER SPACING UPDATES
+const letterOutput = document.getElementById('rangeLetter');
+const unsubscribeLetterUpdates = onSnapshot(
+  doc(db, 'data', 'letterspacing'),
+  (doc) => {
+    // get data from document snapshot
+    const letterSpaceData = doc.data();
+    const letterSpace = doc.data
+
+    const letterSpaceTrans = letterSpaceData.value;
+    console.log("FONTSIZE DB: " + letterSpaceTrans);
+
+    document.getElementById('textarea').style.letterSpacing = letterSpaceTrans;
+    document.getElementById('rangeLetter').value = letterSpaceTrans;
+  }
+);
+
+
 
 // unsubscribe to updates by calling this function
 // unsubscribeColorUpdates()
@@ -213,13 +248,8 @@ async function addValue(id, value) {
 const submitBtn = document.getElementById('submit-btn');
 
 
-// VARIABLE FOR data value
-const eventTrigger = 'click';/* 'input';*/
-
-console.log("works");
-
-// CHANGE VALUE
-const backgroundColorInput = document.getElementById('colorBg');
+// VARIABLE FOR DATA VALUE
+const eventTrigger = 'input';/* 'input';*/
 
 function throttle (callback, limit) {
   var waiting = false;                      // Initially, we're not waiting
@@ -234,8 +264,11 @@ function throttle (callback, limit) {
   }
 }
 
+// CHANGE VALUE
+const backgroundColorInput = document.getElementById('colorBg');
+
 // add / replace color on form submit
-submitBtn.addEventListener(eventTrigger, (event) => {
+backgroundColorInput.addEventListener(eventTrigger, (event) => {
   
   const color = backgroundColorInput.value;
   // throttle(() => {console.log('click')}, 1000);
@@ -248,7 +281,7 @@ const textColorInput = document.getElementById('colorText');
 // add / replace color 
 //submitBtn + click event
 
-submitBtn.addEventListener(eventTrigger, (event) => {
+textColorInput.addEventListener(eventTrigger, (event) => {
   const textColor = textColorInput.value;
   addValue('colortext', textColor);
 });
@@ -256,7 +289,7 @@ submitBtn.addEventListener(eventTrigger, (event) => {
 const lineHeightInput = document.getElementById('rangeHeight');
 
 // add / replace color on form submit
-submitBtn.addEventListener(eventTrigger, (event) => {
+lineHeightInput.addEventListener(eventTrigger, (event) => {
   const lineHeight = lineHeightInput.value;
   addValue('lineheight', lineHeight);
 });
@@ -268,9 +301,27 @@ const sizeInput = document.getElementById('rangeSize');
 console.log("DB -> " + sizeInput);
 
 // add / replace size on form submit
-submitBtn.addEventListener(eventTrigger, (event) => {
+sizeInput.addEventListener(eventTrigger, (event) => {
   const size = sizeInput.value;
   addValue('fontsize', size);
+});
+
+// CHANGE TEXT SPACING
+const textSpaceInput = document.getElementById('rangeSpace');
+
+textSpaceInput.addEventListener(eventTrigger, (event) => {
+  const textSpacing = textSpaceInput.value;
+  addValue('textspacing', textSpacing)
+
+});
+
+// CHANGE LETTER SPACING
+const textLetterInput = document.getElementById('rangeLetter');
+
+textLetterInput.addEventListener(eventTrigger, (event) => {
+  const textLetter = textLetterInput.value;
+  addValue('letterspacing', textLetter)
+
 });
 
 
