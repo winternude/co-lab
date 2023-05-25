@@ -14,7 +14,7 @@ import {
 // config
 const firebaseConfig = {
 
-  /* 
+  
   // NEW DB API KEY
   apiKey: "AIzaSyCUGdgKzVb6_cJyav4V5U8EyO6iJNmZm0s",
   authDomain: "co-lab-16feb.firebaseapp.com",
@@ -23,8 +23,8 @@ const firebaseConfig = {
   messagingSenderId: "827072280835",
   appId: "1:827072280835:web:210d9802f03c7286181136",
   measurementId: "G-SQRV99ZX8S"
-  */
-
+  
+/*
 //OLD DB API KEY
     apiKey: "AIzaSyD5fO7vcmtPVbsruyOrF-YDmhNDKGg0LlI",
     authDomain: "co-lab-prj.firebaseapp.com",
@@ -33,7 +33,7 @@ const firebaseConfig = {
     messagingSenderId: "983517005444",
     appId: "1:983517005444:web:783087360a20eeb4bba4d1",
     measurementId: "G-TBHR1NL4MF"
-
+*/
   
 };
 
@@ -212,11 +212,15 @@ async function addValue(id, value) {
 // VARIABLE FOR SUBMIT BUTTON
 const submitBtn = document.getElementById('submit-btn');
 
+
+// VARIABLE FOR data value
+const eventTrigger = 'click';
+
 // CHANGE VALUE
 const backgroundColorInput = document.getElementById('colorBg');
 
 // add / replace color on form submit
-backgroundColorInput.addEventListener('input', (event) => {
+submitBtn.addEventListener(eventTrigger, (event) => {
   const color = backgroundColorInput.value;
   addValue('colorbg', color);
 });
@@ -227,7 +231,7 @@ const textColorInput = document.getElementById('colorText');
 // add / replace color 
 //submitBtn + click event
 
-textColorInput.addEventListener('input', (event) => {
+submitBtn.addEventListener(eventTrigger, (event) => {
   const textColor = textColorInput.value;
   addValue('colortext', textColor);
 });
@@ -235,7 +239,7 @@ textColorInput.addEventListener('input', (event) => {
 const lineHeightInput = document.getElementById('rangeHeight');
 
 // add / replace color on form submit
-lineHeightInput.addEventListener('input', (event) => {
+submitBtn.addEventListener(eventTrigger, (event) => {
   const lineHeight = lineHeightInput.value;
   addValue('lineheight', lineHeight);
 });
@@ -247,7 +251,7 @@ const sizeInput = document.getElementById('rangeSize');
 console.log("DB -> " + sizeInput);
 
 // add / replace size on form submit
-sizeInput.addEventListener('input', (event) => {
+submitBtn.addEventListener(eventTrigger, (event) => {
   const size = sizeInput.value;
   addValue('fontsize', size);
 });
