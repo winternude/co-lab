@@ -214,7 +214,7 @@ const submitBtn = document.getElementById('submit-btn');
 
 
 // VARIABLE FOR data value
-const eventTrigger = 'input';/* 'input';*/
+const eventTrigger = 'click';/* 'input';*/
 
 console.log("works");
 
