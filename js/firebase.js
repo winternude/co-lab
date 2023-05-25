@@ -300,7 +300,7 @@ window.onload = function() {
   console.log("User entered the website");
   currentUsers++;
   console.log(currentUsers);
-  userCounter.innerHTML = currentUsers;
+  userCounter.innerHTML = "Users: " +currentUsers;
 
   // Additional tracking logic or actions can be performed here
 };
