@@ -61,6 +61,16 @@ function enterSection() {
   console.log(start);
 }
 
+function userA() {
+  userA = document.getElementById('parameterUserB');
+  userA.classList.add('hidden');
+}
+
+function userB() {
+  userB = document.getElementById('parameterUserA');
+  userB.classList.add('hidden');
+}
+
 // VALUE STUFF
 
 /* Getting Values from Data */

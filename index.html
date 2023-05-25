@@ -10,8 +10,8 @@
     <meta name="keywords" content="keywords, here" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/assets/favicon/favicon.svg">
-    <link rel="icon" type="image/png" href="/assets/favicon/favicon.png">
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon/favicon.svg">
+    <link rel="icon" type="image/png" href="../assets/favicon/favicon.png">
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="./css/style.css" />
@@ -25,7 +25,7 @@
 
         <header>
             <div class="header__container">
-              <button class="btn header__btn"> Info</button>
+              <button class="btn header__btn">© PRG</button>
               <button class="btn header__logo-btn">
                 <p>CO – LAB</p>
                 <div class='.container'>
@@ -47,8 +47,8 @@
                 <div class="overlay__input">
                     <p>
                       There can only be 2 users on this page. 
-                      There are things you can change and there are things the other user can change. 
-                      Build the visual appearance of this page collaboratively. 
+                      There are things you can change and there are things the other user can change.
+                      Build the visual appearance of this page collaboratively.
                       Feel Free to experiment.
                       This website is a work in progess.  
                     </p>
@@ -64,8 +64,8 @@
             </div>
           
             <div class="enter-container">
-              <button class="btn enter-btn" onclick="enterSection()">A</button>
-              <button class="btn enter-btn" onclick="enterSection()">B</button>
+              <button class="btn enter-btn" onclick="enterSection(); userA()">A</button>
+              <button class="btn enter-btn" onclick="enterSection(); userB()">B</button>
             </div>
         </section>
 
@@ -82,11 +82,15 @@
         </main>
     </section>
  
-    <div class="bottom-bar glass">
-        <input class="colorpick" type="color" value="#FFFFFF" id="colorBg">
-        <input class="slider" type="range" min=".1" max="50" class="slider" id="rangeHeight">
-        <input class="slider" type="range" min=".5" max="100" class="slider" id="rangeSize">
-        <input class="colorpick" type="color" value="#000000" id="colorText">
+    <div class="bottom-bar glass" id="bottom-bar">
+        <div class="parameter-container" id="parameterUserA">
+          <input class="colorpick" type="color" value="#FFFFFF" id="colorBg">
+          <input class="slider" type="range" min="1" max="50" class="slider" id="rangeHeight">
+        </div>
+        <div class="parameter-container" id="parameterUserB">
+          <input class="slider" type="range" min="5" max="50" class="slider" id="rangeSize">
+          <input class="colorpick" type="color" value="#000000" id="colorText">
+        </div>
         <input class="btn" type="submit" id="submit-btn" value="COLLABORATE">
     </div>
         

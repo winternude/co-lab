@@ -10,8 +10,22 @@ import {
   onSnapshot,
 } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js';
 
+
 // config
 const firebaseConfig = {
+
+  /* 
+  // NEW DB API KEY
+  apiKey: "AIzaSyCUGdgKzVb6_cJyav4V5U8EyO6iJNmZm0s",
+  authDomain: "co-lab-16feb.firebaseapp.com",
+  projectId: "co-lab-16feb",
+  storageBucket: "co-lab-16feb.appspot.com",
+  messagingSenderId: "827072280835",
+  appId: "1:827072280835:web:210d9802f03c7286181136",
+  measurementId: "G-SQRV99ZX8S"
+  */
+
+//OLD DB API KEY
     apiKey: "AIzaSyD5fO7vcmtPVbsruyOrF-YDmhNDKGg0LlI",
     authDomain: "co-lab-prj.firebaseapp.com",
     projectId: "co-lab-prj",
@@ -19,6 +33,8 @@ const firebaseConfig = {
     messagingSenderId: "983517005444",
     appId: "1:983517005444:web:783087360a20eeb4bba4d1",
     measurementId: "G-TBHR1NL4MF"
+
+  
 };
 
 // initialize firebase
@@ -193,6 +209,9 @@ async function addValue(id, value) {
 //   addValue('colorbg', color);
 // });
 
+// VARIABLE FOR SUBMIT BUTTON
+const submitBtn = document.getElementById('submit-btn');
+
 // CHANGE VALUE
 const backgroundColorInput = document.getElementById('colorBg');
 
@@ -205,7 +224,9 @@ backgroundColorInput.addEventListener('input', (event) => {
 // CHANGE TEXT COLOR
 const textColorInput = document.getElementById('colorText');
 
-// add / replace color on form submit
+// add / replace color 
+//submitBtn + click event
+
 textColorInput.addEventListener('input', (event) => {
   const textColor = textColorInput.value;
   addValue('colortext', textColor);
@@ -221,7 +242,6 @@ lineHeightInput.addEventListener('input', (event) => {
 
 // CHANGE FONT SIZE INPUT
 // FORM FOR ADDIND / REPLACING RANGE SIZE
-const submit = document.getElementById('submit-btn');
 const sizeInput = document.getElementById('rangeSize');
 
 console.log("DB -> " + sizeInput);

@@ -118,7 +118,7 @@ header {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 .block {
@@ -346,6 +346,12 @@ header {
     display: flex;
     align-content: center;
     column-gap: 1rem;
+}
+
+.parameter-container {
+    display: flex;
+    width: 100%;
+
 }
 
 .colorpick {
