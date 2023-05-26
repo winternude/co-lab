@@ -63,6 +63,7 @@ body {
     /* Scroll Bounce */ 
     overscroll-behavior: none;
     overflow: hidden;
+    font-family: sans-serif;
 
 }
 
