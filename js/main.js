@@ -34,8 +34,6 @@ $(".move-area").mousemove(function(event) {
   });
 });
 
-console.log("is this working?, hope so");
-
 /* Overlay Animation */
 const expand = document.getElementsByClassName('expand')[0]
 const overlay = document.getElementsByClassName('overlay')[0]

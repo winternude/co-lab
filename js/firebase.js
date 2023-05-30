@@ -68,7 +68,7 @@ const unsubscribeColorUpdates = onSnapshot(
     const bodyBg = document.getElementById('body');
     
     const colorBgDataTrans = colorBgData.value;
-    console.log("DB Color BG " + colorBgDataTrans);
+    //console.log("DB Color BG " + colorBgDataTrans);
 
     bodyBg.style.background = colorBgDataTrans;
     document.getElementById('colorBg').value = colorBgDataTrans;
@@ -99,7 +99,7 @@ const unsubscribeColorTextUpdates = onSnapshot(
     const textArea = document.getElementById('textarea');
 
     const colorTextDataTrans = colorTextData.value;
-    console.log("DB Text Color " + colorTextDataTrans);
+    //console.log("DB Text Color " + colorTextDataTrans);
 
     document.getElementById('textarea').style.color = colorTextDataTrans;
     document.getElementById('colorText').value = colorTextDataTrans;
@@ -127,7 +127,7 @@ const unsubscribeHeightUpdates = onSnapshot(
     const textLineHeight = doc.data
 
     const heightDataTrans = heightData.value;
-    console.log("LINEHEIGHT DB: " + heightDataTrans);
+    //console.log("LINEHEIGHT DB: " + heightDataTrans);
 
     document.getElementById('textarea').style.lineHeight = heightDataTrans + "rem";
     document.getElementById('rangeHeight').value = heightDataTrans;
@@ -145,7 +145,7 @@ const unsubscribeSizeUpdates = onSnapshot(
     const textFontSize = doc.data
 
     const sizeDataTrans = sizeData.value;
-    console.log("FONTSIZE DB: " + sizeDataTrans);
+    //console.log("FONTSIZE DB: " + sizeDataTrans);
 
     document.getElementById('textarea').style.fontSize = sizeDataTrans + "rem";
     document.getElementById('rangeSize').value = sizeDataTrans;
@@ -162,7 +162,7 @@ const unsubscribeSpacingUpdates = onSnapshot(
     const textSpace = doc.data
 
     const textSpaceTrans = textSpaceData.value;
-    console.log("FONTSIZE DB: " + textSpaceTrans);
+    //console.log("FONTSIZE DB: " + textSpaceTrans);
 
     document.getElementById('textarea').style.wordSpacing = textSpaceTrans + "rem";
     document.getElementById('rangeSpace').value = textSpaceTrans;
@@ -179,7 +179,7 @@ const unsubscribeLetterUpdates = onSnapshot(
     const letterSpace = doc.data
 
     const letterSpaceTrans = letterSpaceData.value;
-    console.log("FONTSIZE DB: " + letterSpaceTrans);
+    //console.log("FONTSIZE DB: " + letterSpaceTrans);
 
     document.getElementById('textarea').style.letterSpacing = letterSpaceTrans + "rem";
     document.getElementById('rangeLetter').value = letterSpaceTrans;
@@ -252,6 +252,8 @@ const submitBtn = document.getElementById('submit-btn');
 // VARIABLE FOR DATA VALUE
 const eventTrigger = 'input';/* 'input';*/
 
+// THROTTLE 
+
 function throttle (callback, limit) {
   var waiting = false;                      // Initially, we're not waiting
   return function () {                      // We return a throttled function
@@ -265,6 +267,21 @@ function throttle (callback, limit) {
   }
 }
 
+// NEW THROTTLE
+function throttle2(cb, delay = 1000) {
+  let shouldWait = false
+
+  return (...args) => {
+    if (shouldWait) return
+
+    cb(...args)
+    shouldWait = true
+    setTimeout(() => {
+      shouldWait = false
+    }, delay)
+  }
+}
+
 // CHANGE VALUE
 const backgroundColorInput = document.getElementById('colorBg');
 
@@ -273,8 +290,12 @@ backgroundColorInput.addEventListener(eventTrigger, (event) => {
   
   const color = backgroundColorInput.value;
   // throttle(() => {console.log('click')}, 1000);
-  addValue('colorbg', color);
+  throttle2(() => {
+    console.log("Throttled" + " " + color)}, 1000);
+    addValue('colorbg', color);
+
 });
+  
 
 // CHANGE TEXT COLOR
 const textColorInput = document.getElementById('colorText');
@@ -364,12 +385,14 @@ colorValueIdInput.addEventListener('submit', (event) => {
 var currentUsers = 0;
 const userCounter = document.getElementById('userCounter');
 
+
+/////////////////
 // TRACKING USERS
 window.onload = function() {
   console.log("User entered the website");
   currentUsers++;
   console.log(currentUsers);
-  userCounter.innerHTML = "Users: " +currentUsers;
+  userCounter.innerHTML = "USERS: " +currentUsers;
 
   // Additional tracking logic or actions can be performed here
 };
