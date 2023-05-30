@@ -416,3 +416,13 @@ header {
     transition: 0.25s ease-in;
     cursor: pointer;
 }
+
+/* Screen Resize */
+@media (max-width: 1200px) {
+
+h3 {
+    font-size: 1.4rem;
+}
+
+
+}
