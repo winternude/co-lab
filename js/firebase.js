@@ -66,7 +66,7 @@ const unsubscribeColorUpdates = onSnapshot(
 
     // toggle Visiblity on Snapshot
     const textBlock = document.getElementById('textarea');
-    textBlock.classList.remove('hidden')
+    textBlock.classList.remove('hidden');
     textBlock.classList.add('block');
 
     
@@ -185,7 +185,7 @@ const unsubscribeLetterUpdates = onSnapshot(
   (doc) => {
     // get data from document snapshot
     const letterSpaceData = doc.data();
-    const letterSpace = doc.data
+    const letterSpace = doc.data;
 
     const letterSpaceTrans = letterSpaceData.value;
     //console.log("FONTSIZE DB: " + letterSpaceTrans);
@@ -257,106 +257,227 @@ async function addValue(id, value) {
 // VARIABLE FOR SUBMIT BUTTON
 const submitBtn = document.getElementById('submit-btn');
 
-
 // VARIABLE FOR DATA VALUE
 const eventTrigger = 'input';/* 'input';*/
 
-// THROTTLE 
+// // THROTTLE 
+// function throttle (callback, limit) {
+//   console.log('throttle');
+//   var waiting = false;                        // Initially, we're not waiting
+//     return function () {                      // We return a throttled function
+//         if (!waiting) {                       // If we're not waiting
+//             // callback.apply(this, arguments);  // Execute users function
+//             callback.call();                  // Execute users function
+//             waiting = true;                   // Prevent future invocations
+//             setTimeout(function () {          // After a period of time
+//                 waiting = false;              // And allow future invocations
+//             }, limit);
+//         }
+//     }
+// }
+
+// // NEW THROTTLE
+// function throttle2(cb, delay = 1000) {
+//   let shouldWait = false
+
+//   return (...args) => {
+//     if (shouldWait) return
+
+//     cb(...args)
+//     shouldWait = true
+//     setTimeout(() => {
+//       shouldWait = false
+//     }, delay)
+//   }
+// }
+
+// NEW NEW THROTTLE
+// https://jsfiddle.net/jonathansampson/m7G64/
+
+// Allow callback to run at most 1 time per 100ms
+// window.addEventListener("resize", throttle(callback, 100));
+// window.addEventListener("resize", callback2);
+
+// // Throttled Event Count
+// function callback ()  { console.count("Throttled");}
+
+// // Non Throttled Event Count (Reference)
+// function callback2 () { 
+//   console.count("Not Throttled"); 
+// }
 
 function throttle (callback, limit) {
-  var waiting = false;                      // Initially, we're not waiting
-  return function () {                      // We return a throttled function
-      if (!waiting) {                       // If we're not waiting
-          callback.apply(this, arguments);  // Execute users function
-          waiting = true;                   // Prevent future invocations
-          setTimeout(function () {          // After a period of time
-              waiting = false;              // And allow future invocations
-          }, limit);
-      }
-  }
+  //console.log("throttleFunction is working")
+    var wait = false;                  // Initially, we're not waiting
+    return function () {               // We return a throttled function
+        if (!wait) {                   // If we're not waiting
+            callback.call();           // Execute users function
+            wait = true;               // Prevent future invocations
+            setTimeout(function () {   // After a period of time
+                wait = false;          // And allow future invocations
+            }, limit);
+        }
+    }
 }
 
-// NEW THROTTLE
-function throttle2(cb, delay = 1000) {
-  let shouldWait = false
-
-  return (...args) => {
-    if (shouldWait) return
-
-    cb(...args)
-    shouldWait = true
-    setTimeout(() => {
-      shouldWait = false
-    }, delay)
-  }
-}
 
 // CHANGE VALUE
 const backgroundColorInput = document.getElementById('colorBg');
 
-// add / replace color on form submit
-backgroundColorInput.addEventListener(eventTrigger, (event) => {
-  
+function changeBackgroundColor () {
   const color = backgroundColorInput.value;
-  // throttle(() => {console.log('click')}, 1000);
-  throttle2(() => {
-    console.log("Throttled" + " " + color)}, 1000);
-    addValue('colorbg', color);
+  console.count("throttled input")
+  // addValue('colorbg', color);
+}
 
-});
-  
+function changeBackgroundColor2 () {
+  const color = backgroundColorInput.value;
+  console.count("non throttled input")
+  // addValue('colorbg', color);
+}
+
+// add / replace color on form submit
+backgroundColorInput.addEventListener(eventTrigger, throttle(changeBackgroundColor, 100));
+backgroundColorInput.addEventListener(eventTrigger, changeBackgroundColor2);
 
 // CHANGE TEXT COLOR
 const textColorInput = document.getElementById('colorText');
 
-// add / replace color 
-//submitBtn + click event
-
-textColorInput.addEventListener(eventTrigger, (event) => {
+function changeTextColor () {
   const textColor = textColorInput.value;
-  addValue('colortext', textColor);
-});
-
-const lineHeightInput = document.getElementById('rangeHeight');
+  console.count("input")
+  // addValue('colortext', textColor);
+}
+function changeTextColor2 () {
+  const textColor = textColorInput.value;
+  console.count("not throttled input")
+  // addValue('colortext', textColor);
+}
 
 // add / replace color on form submit
-lineHeightInput.addEventListener(eventTrigger, (event) => {
+textColorInput.addEventListener(eventTrigger, throttle(changeTextColor, 100));
+textColorInput.addEventListener(eventTrigger, changeTextColor2);
+
+// textColorInput.addEventListener(eventTrigger, (event) => {
+//   const textColor = textColorInput.value;
+//   addValue('colortext', textColor);
+// });
+
+// LINE HEIGHT ON SLIDER SUBMIT
+const lineHeightInput = document.getElementById('rangeHeight');
+
+// Function that changes the text-size (which is throttled later on)
+function changeLineHeight () {
   const lineHeight = lineHeightInput.value;
+  console.count("LineHeightThrottled input")
   addValue('lineheight', lineHeight);
-});
+}
+
+// Non Throttled TextSize Function
+function changeLineHeight2 () {
+  const lineHeight = lineHeightInput.value;
+  console.count("LineHeightNonThrottled input")
+  //addValue('lineheight', lineHeight);
+}
+
+
+lineHeightInput.addEventListener(eventTrigger, throttle(changeLineHeight, 100));
+// Non Throttled TextSize
+//lineHeightInput.addEventListener(eventTrigger, changeLineHeight2);
+
+// // OLD FUNCTION
+// lineHeightInput.addEventListener(eventTrigger, (event) => {
+//   const lineHeight = lineHeightInput.value;
+//   addValue('lineheight', lineHeight);
+// });
 
 // CHANGE FONT SIZE INPUT
 // FORM FOR ADDIND / REPLACING RANGE SIZE
 const sizeInput = document.getElementById('rangeSize');
 
-console.log("DB -> " + sizeInput);
-
-// add / replace size on form submit
-sizeInput.addEventListener(eventTrigger, (event) => {
+// Function that changes the text-size (which is throttled later on)
+function changeTextSize () {
   const size = sizeInput.value;
+  console.count("TextSizeThrottled input")
   addValue('fontsize', size);
-});
+}
 
-// CHANGE TEXT SPACING
+// Non Throttled TextSize Function
+function changeTextSize2 () {
+  const size = sizeInput.value;
+  console.count("TextSizeNonThrottled input")
+  //addValue('fontsize', size);
+}
+
+// change Text size on slider submit
+sizeInput.addEventListener(eventTrigger, throttle(changeTextSize, 100));
+// Non Throttled TextSize
+//sizeInput.addEventListener(eventTrigger, changeTextSize2);
+
+// // add / replace size on form submit
+// sizeInput.addEventListener(eventTrigger, (event) => {
+//   const size = sizeInput.value;
+//   addValue('fontsize', size);
+// });
+
+// CHANGE TEXT SPACING //
 const textSpaceInput = document.getElementById('rangeSpace');
 
-textSpaceInput.addEventListener(eventTrigger, (event) => {
+function changeTextSpacing () {
   const textSpacing = textSpaceInput.value;
-  addValue('textspacing', textSpacing)
+  console.count("TextSpacingThrottled input")
+  addValue('textspacing', textSpacing);
+}
 
-});
+// Non Throttled TextSize Function
+function changeTextSpacing2 () {
+  const textSpacing = textSpaceInput.value;
+  console.count("TextSpacingNonThrottled input")
+  //addValue('textspacing', textSpacing);
+}
+
+// change Text Spacing on slider submit
+textSpaceInput.addEventListener(eventTrigger, throttle(changeTextSpacing, 100));
+
+// Non Throttled TextSpacing
+//textSpaceInput.addEventListener(eventTrigger, changeTextSpacing2);
+
+
+/* OLD FUNCTION */
+// textSpaceInput.addEventListener(eventTrigger, (event) => {
+//   const textSpacing = textSpaceInput.value;
+//   addValue('textspacing', textSpacing)
+// });
 
 // CHANGE LETTER SPACING
 const textLetterInput = document.getElementById('rangeLetter');
 
-textLetterInput.addEventListener(eventTrigger, (event) => {
+function changeLetterSpacing () {
   const textLetter = textLetterInput.value;
-  addValue('letterspacing', textLetter)
+  console.count("TextLetterThrottled input")
+  addValue('letterspacing', textLetter);
+}
 
-});
+// Non Throttled TextSize Function
+function changeLetterSpacing2 () {
+  const textLetter = textLetterInput.value;
+  console.count("TextSizeNonThrottled input")
+  //addValue('letterspacing', textLetter);
+}
 
+// change Text size on slider submit
+textLetterInput.addEventListener(eventTrigger, throttle(changeLetterSpacing, 100));
 
+// Non Throttled TextSpacing
+//textLetterInput.addEventListener(eventTrigger, changeLetterSpacing2);
 
+/* OLD FUNCTION */
+//
+// textLetterInput.addEventListener(eventTrigger, (event) => {
+//   const textLetter = textLetterInput.value;
+//   addValue('letterspacing', textLetter)
+
+// });
 
 // OTHER STUFF
 
@@ -395,6 +516,7 @@ var currentUsers = 1;
 const userCounter = document.getElementById('userCounter');
 console.log(currentUsers);
 userCounter.innerHTML = "USERS: " +currentUsers;
+
 
 /*
 /////////////////

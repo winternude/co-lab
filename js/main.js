@@ -40,7 +40,6 @@ const overlay = document.getElementsByClassName('overlay')[0]
 
 expand.addEventListener('click', () => {
   overlay.classList.toggle('active')
-  
 })
 
 /* FUNCTIONS */
