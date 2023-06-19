@@ -12,6 +12,7 @@ import {
   // USER AUTHENTIFICATION?
   /*
   createAnonymusUser,
+  auth,
   updateUserDocument,
   listOnlineUsers,
   */
@@ -390,8 +391,10 @@ colorValueIdInput.addEventListener('submit', (event) => {
 
 });
 
-var currentUsers = 0;
+var currentUsers = 1;
 const userCounter = document.getElementById('userCounter');
+console.log(currentUsers);
+userCounter.innerHTML = "USERS: " +currentUsers;
 
 /*
 /////////////////
@@ -414,3 +417,7 @@ window.onbeforeunload = function() {
 */
 
 // TRACKING USERS USING FIREBASE (based on Code by Katharina Nejdl)
+
+//ENABLE ANONYMUS USER IN THE FIREBASE PRJ CONSOLE!!!
+
+
