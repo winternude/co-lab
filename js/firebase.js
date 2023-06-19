@@ -8,6 +8,14 @@ import {
   doc,
   setDoc,
   onSnapshot,
+
+  // USER AUTHENTIFICATION?
+  /*
+  createAnonymusUser,
+  updateUserDocument,
+  listOnlineUsers,
+  */
+
 } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js';
 
 
@@ -385,9 +393,9 @@ colorValueIdInput.addEventListener('submit', (event) => {
 var currentUsers = 0;
 const userCounter = document.getElementById('userCounter');
 
-
+/*
 /////////////////
-// TRACKING USERS
+// TRACKING USERS IDEA NOT WORKING 
 window.onload = function() {
   console.log("User entered the website");
   currentUsers++;
@@ -403,3 +411,6 @@ window.onbeforeunload = function() {
   // Additional tracking logic or actions can be performed here
   return null; // This is required to prevent a browser-specific prompt
 };
+*/
+
+// TRACKING USERS USING FIREBASE (based on Code by Katharina Nejdl)

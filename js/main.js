@@ -72,6 +72,7 @@ function userB() {
 // VALUE STUFF
 
 /* Getting Values from Data */
+/* This is mostly for testing */
 
 /*
 function getResults() {
