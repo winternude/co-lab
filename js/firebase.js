@@ -7,23 +7,15 @@ import {
   getDocs,
   doc,
   setDoc,
+  // activated on every change
   onSnapshot,
-
-  // USER AUTHENTIFICATION?
-  /*
-  createAnonymusUser,
-  auth,
-  updateUserDocument,
-  listOnlineUsers,
-  */
-
+  // vers. 9.22.2 – added for user counter / auth
+  serverTimestamp,
 } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js';
-
 
 // config
 const firebaseConfig = {
 
-  /*
   // NEW DB API KEY
   apiKey: "AIzaSyCUGdgKzVb6_cJyav4V5U8EyO6iJNmZm0s",
   authDomain: "co-lab-16feb.firebaseapp.com",
@@ -32,18 +24,16 @@ const firebaseConfig = {
   messagingSenderId: "827072280835",
   appId: "1:827072280835:web:210d9802f03c7286181136",
   measurementId: "G-SQRV99ZX8S"
-  */
   
 
-//OLD DB API KEY
-    apiKey: "AIzaSyD5fO7vcmtPVbsruyOrF-YDmhNDKGg0LlI",
-    authDomain: "co-lab-prj.firebaseapp.com",
-    projectId: "co-lab-prj",
-    storageBucket: "co-lab-prj.appspot.com",
-    messagingSenderId: "983517005444",
-    appId: "1:983517005444:web:783087360a20eeb4bba4d1",
-    measurementId: "G-TBHR1NL4MF"
-
+// //OLD DB API KEY
+//     apiKey: "AIzaSyD5fO7vcmtPVbsruyOrF-YDmhNDKGg0LlI",
+//     authDomain: "co-lab-prj.firebaseapp.com",
+//     projectId: "co-lab-prj",
+//     storageBucket: "co-lab-prj.appspot.com",
+//     messagingSenderId: "983517005444",
+//     appId: "1:983517005444:web:783087360a20eeb4bba4d1",
+//     measurementId: "G-TBHR1NL4MF"
   
 };
 
@@ -260,38 +250,7 @@ const submitBtn = document.getElementById('submit-btn');
 // VARIABLE FOR DATA VALUE
 const eventTrigger = 'input';/* 'input';*/
 
-// // THROTTLE 
-// function throttle (callback, limit) {
-//   console.log('throttle');
-//   var waiting = false;                        // Initially, we're not waiting
-//     return function () {                      // We return a throttled function
-//         if (!waiting) {                       // If we're not waiting
-//             // callback.apply(this, arguments);  // Execute users function
-//             callback.call();                  // Execute users function
-//             waiting = true;                   // Prevent future invocations
-//             setTimeout(function () {          // After a period of time
-//                 waiting = false;              // And allow future invocations
-//             }, limit);
-//         }
-//     }
-// }
-
-// // NEW THROTTLE
-// function throttle2(cb, delay = 1000) {
-//   let shouldWait = false
-
-//   return (...args) => {
-//     if (shouldWait) return
-
-//     cb(...args)
-//     shouldWait = true
-//     setTimeout(() => {
-//       shouldWait = false
-//     }, delay)
-//   }
-// }
-
-// NEW NEW THROTTLE
+// THROTTLE FUNCTION
 // https://jsfiddle.net/jonathansampson/m7G64/
 
 // Allow callback to run at most 1 time per 100ms
@@ -321,47 +280,31 @@ function throttle (callback, limit) {
 }
 
 
-// CHANGE VALUE
+// CHANGE BACKGROUND VALUE
 const backgroundColorInput = document.getElementById('colorBg');
 
 function changeBackgroundColor () {
   const color = backgroundColorInput.value;
-  console.count("throttled input")
-  // addValue('colorbg', color);
-}
-
-function changeBackgroundColor2 () {
-  const color = backgroundColorInput.value;
-  console.count("non throttled input")
-  // addValue('colorbg', color);
+  // console.count("throttled input")
+  addValue('colorbg', color);
 }
 
 // add / replace color on form submit
 backgroundColorInput.addEventListener(eventTrigger, throttle(changeBackgroundColor, 100));
-backgroundColorInput.addEventListener(eventTrigger, changeBackgroundColor2);
+
 
 // CHANGE TEXT COLOR
 const textColorInput = document.getElementById('colorText');
 
 function changeTextColor () {
   const textColor = textColorInput.value;
-  console.count("input")
-  // addValue('colortext', textColor);
-}
-function changeTextColor2 () {
-  const textColor = textColorInput.value;
-  console.count("not throttled input")
-  // addValue('colortext', textColor);
+  // console.count("input")
+  addValue('colortext', textColor);
 }
 
 // add / replace color on form submit
 textColorInput.addEventListener(eventTrigger, throttle(changeTextColor, 100));
-textColorInput.addEventListener(eventTrigger, changeTextColor2);
 
-// textColorInput.addEventListener(eventTrigger, (event) => {
-//   const textColor = textColorInput.value;
-//   addValue('colortext', textColor);
-// });
 
 // LINE HEIGHT ON SLIDER SUBMIT
 const lineHeightInput = document.getElementById('rangeHeight');
@@ -369,27 +312,12 @@ const lineHeightInput = document.getElementById('rangeHeight');
 // Function that changes the text-size (which is throttled later on)
 function changeLineHeight () {
   const lineHeight = lineHeightInput.value;
-  console.count("LineHeightThrottled input")
+  //console.count("LineHeightThrottled input")
   addValue('lineheight', lineHeight);
 }
 
-// Non Throttled TextSize Function
-function changeLineHeight2 () {
-  const lineHeight = lineHeightInput.value;
-  console.count("LineHeightNonThrottled input")
-  //addValue('lineheight', lineHeight);
-}
-
-
 lineHeightInput.addEventListener(eventTrigger, throttle(changeLineHeight, 100));
-// Non Throttled TextSize
-//lineHeightInput.addEventListener(eventTrigger, changeLineHeight2);
 
-// // OLD FUNCTION
-// lineHeightInput.addEventListener(eventTrigger, (event) => {
-//   const lineHeight = lineHeightInput.value;
-//   addValue('lineheight', lineHeight);
-// });
 
 // CHANGE FONT SIZE INPUT
 // FORM FOR ADDIND / REPLACING RANGE SIZE
@@ -398,56 +326,26 @@ const sizeInput = document.getElementById('rangeSize');
 // Function that changes the text-size (which is throttled later on)
 function changeTextSize () {
   const size = sizeInput.value;
-  console.count("TextSizeThrottled input")
+  // console.count("TextSizeThrottled input")
   addValue('fontsize', size);
-}
-
-// Non Throttled TextSize Function
-function changeTextSize2 () {
-  const size = sizeInput.value;
-  console.count("TextSizeNonThrottled input")
-  //addValue('fontsize', size);
 }
 
 // change Text size on slider submit
 sizeInput.addEventListener(eventTrigger, throttle(changeTextSize, 100));
-// Non Throttled TextSize
-//sizeInput.addEventListener(eventTrigger, changeTextSize2);
 
-// // add / replace size on form submit
-// sizeInput.addEventListener(eventTrigger, (event) => {
-//   const size = sizeInput.value;
-//   addValue('fontsize', size);
-// });
 
-// CHANGE TEXT SPACING //
+// CHANGE TEXT SPACING
 const textSpaceInput = document.getElementById('rangeSpace');
 
 function changeTextSpacing () {
   const textSpacing = textSpaceInput.value;
-  console.count("TextSpacingThrottled input")
+  // console.count("TextSpacingThrottled input")
   addValue('textspacing', textSpacing);
-}
-
-// Non Throttled TextSize Function
-function changeTextSpacing2 () {
-  const textSpacing = textSpaceInput.value;
-  console.count("TextSpacingNonThrottled input")
-  //addValue('textspacing', textSpacing);
 }
 
 // change Text Spacing on slider submit
 textSpaceInput.addEventListener(eventTrigger, throttle(changeTextSpacing, 100));
 
-// Non Throttled TextSpacing
-//textSpaceInput.addEventListener(eventTrigger, changeTextSpacing2);
-
-
-/* OLD FUNCTION */
-// textSpaceInput.addEventListener(eventTrigger, (event) => {
-//   const textSpacing = textSpaceInput.value;
-//   addValue('textspacing', textSpacing)
-// });
 
 // CHANGE LETTER SPACING
 const textLetterInput = document.getElementById('rangeLetter');
@@ -455,29 +353,12 @@ const textLetterInput = document.getElementById('rangeLetter');
 function changeLetterSpacing () {
   const textLetter = textLetterInput.value;
   console.count("TextLetterThrottled input")
-  addValue('letterspacing', textLetter);
-}
-
-// Non Throttled TextSize Function
-function changeLetterSpacing2 () {
-  const textLetter = textLetterInput.value;
-  console.count("TextSizeNonThrottled input")
-  //addValue('letterspacing', textLetter);
+  // addValue('letterspacing', textLetter);
 }
 
 // change Text size on slider submit
 textLetterInput.addEventListener(eventTrigger, throttle(changeLetterSpacing, 100));
 
-// Non Throttled TextSpacing
-//textLetterInput.addEventListener(eventTrigger, changeLetterSpacing2);
-
-/* OLD FUNCTION */
-//
-// textLetterInput.addEventListener(eventTrigger, (event) => {
-//   const textLetter = textLetterInput.value;
-//   addValue('letterspacing', textLetter)
-
-// });
 
 // OTHER STUFF
 
@@ -517,29 +398,195 @@ const userCounter = document.getElementById('userCounter');
 console.log(currentUsers);
 userCounter.innerHTML = "USERS: " +currentUsers;
 
-
-/*
-/////////////////
-// TRACKING USERS IDEA NOT WORKING 
-window.onload = function() {
-  console.log("User entered the website");
-  currentUsers++;
-  console.log(currentUsers);
-  userCounter.innerHTML = "USERS: " +currentUsers;
-
-  // Additional tracking logic or actions can be performed here
-};
-
-window.onbeforeunload = function() {
-  console.log("User is leaving the website");
-  currentUsers--;
-  // Additional tracking logic or actions can be performed here
-  return null; // This is required to prevent a browser-specific prompt
-};
-*/
-
 // TRACKING USERS USING FIREBASE (based on Code by Katharina Nejdl)
 
 //ENABLE ANONYMUS USER IN THE FIREBASE PRJ CONSOLE!!!
 
 
+
+
+// // USER COUNTER
+
+// // FIX ME: 
+// // > CHANGE NAME OF "EDITORIAL" COLLECTION
+
+// //FUNCTIONS TO TRACK USERS
+
+// // LOADED BY FIREBASE:
+// // getFirestore,
+// // collection,
+// // getDocs,
+// // doc,
+// // setDoc,
+// // onSnapshot,
+
+// // CREATE ANONYMOUS USER
+// import { 
+//   getAuth, 
+//   signInAnonymously, 
+//   onAuthStateChanged,
+// // } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js'
+// } from 'https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js'
+
+// // FUNCTIONS FROM API.JS
+// // https://github.com/nejdl/together-online_reactjs-frontend/blob/main/src/api/api.js#L49
+// // sign in anonymously
+// const auth = getAuth();
+// const createAnonymousUser = () => {
+//   signInAnonymously(auth)
+//     .then(() => {
+//       console.log('Signed in as anonymous user.');
+//     })
+//     .catch((error) => {
+//       console.error(error);
+//     });
+// };
+
+// // add document
+// const createUserDocument = (userId) => {
+//   setDoc(doc(db, 'editorial', userId), {
+//     timestamp: serverTimestamp(),
+//   })
+//     .then(() => {
+//       // console.log('Created user document.');
+//     })
+//     .catch((error) => {
+//       console.error(error);
+//     });
+// };
+
+// // update document
+// const updateUserDocument = async (userId) => {
+//   let docRef = doc(db, 'editorial', userId);
+
+//   try {
+//     await updateDoc(docRef, {
+//       timestamp: Date.now(),
+//     });
+//   } catch (error) {
+//     console.error(error);
+//   }
+// };
+
+// // FIX ME!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// // change editorialCollection for later, value = firestore editorial collection
+
+// const editorialCollection = collection(db, 'editorial');
+
+// // list online users
+// const listOnlineUsers = async (expirationTime) => {
+//   try {
+//     // get all user documents
+//     const documents = await getDocs(editorialCollection);
+
+//     // list all user documents where timestamp is not older than exired timestamp
+//     let onlineUsers = [];
+//     let users = [];
+//     documents.docs.forEach((doc) => {
+//       const docData = doc.data();
+//       const documentTimestamp = docData.timestamp;
+//       // FIX ME (instead of big time buffer use snapshot changes)
+//       const timeBuffer = 1700;
+//       const expiredTimestamp = Date.now() - (expirationTime + timeBuffer);
+//       if (documentTimestamp >= expiredTimestamp) {
+//         onlineUsers.push({ ...docData, id: doc.id });
+//       }
+//     });
+//     const numberOfOnlineUsers = onlineUsers.length;
+//     return numberOfOnlineUsers;
+//   } catch (error) {
+//     console.error(error);
+//   }
+// };
+
+// // FUNCTIONS FROM EDITORIAL.JS
+// // https://github.com/nejdl/together-online_reactjs-frontend/blob/main/src/components/Experiments/Editorial/Editorial.js#L3
+
+// // create anonymous user and set user id
+// // useEffect(() => {
+//   createAnonymousUser();
+
+//   let userId = null;
+
+//   const setUserId = (uid) => {
+//     console.log("do something with the" + uid);
+//     // in array speichern?
+//   }
+
+//   // if anonymous sign is successful
+//   const unsubscribeAuthStateChange = onAuthStateChanged(auth, (user) => {
+//     if (user) {
+//       const uid = user.uid;
+//       // set user id state
+//       // and create user document in db
+//       createUserDocument(uid);
+      
+//       // setUserId -> const userArray = []; rebuilding from react...
+//       // setUserId(uid); // FIX ME
+//       userId = uid;
+//       updateUserDocumentsAndCountOnlineUsers() // FIX ME
+      
+//     } else {
+//       console.error('Error: No user found.');
+//     }
+//   });
+
+//   // // cleanup subscription // FIX ME [REACT > VANILLA JS]
+//   // return () => {
+//   //   unsubscribeAuthStateChange();
+//   // }; 
+// // }, []);
+
+
+
+// // UPDATE USER DOCUMENT & COUNT ONLINE USERS
+// const updateTimeInMs = 1000;
+
+// // FIX ME HERE !!!!!!
+// // useEffect(() => { // FIX ME [REACT > VANILLA JS]
+// const updateUserDocumentsAndCountOnlineUsers = () => {
+//   // update user document in db frequently
+//   // to prove that user is still online
+//   // and count current online users
+//   let updateInterval;
+//   // only after anonymous user with user id was created
+//   if (userId) {
+//     updateInterval = setInterval(() => {
+//       // update user document with this id to update timestamp
+//       updateUserDocument(userId);
+//       coutOnlineUsers();
+//     }, updateTimeInMs);
+//   }
+
+//   // cleanup interval
+//   return () => clearInterval(updateInterval);
+// }
+
+// updateUserDocumentsAndCountOnlineUsers() // FIX ME [REACT > VANILLA JS]
+// // > relaod this function everytime user id changes
+// // }, [userId]); // FIX ME [REACT > VANILLA JS]
+
+// // // cleanup interval // FIX ME [REACT > VANILLA JS]
+// // return () => clearInterval(updateInterval);
+
+// const setCurrentlyOnline = (numberOfOnlineUsers) => {
+//   console.log("do something with" + numberOfOnlineUsers)
+//   // FIX ME [REACT > VANILLA JS]
+//   // get output element 
+//   // outputElement.innerHTML = numberOfOnlineUsers;
+//   //   console.log(currentUsers);
+//   // userCounter.innerHTML = "USERS: " +currentUsers;
+// }
+
+// // count current users online
+// const coutOnlineUsers = async () => {
+//   const numberOfOnlineUsers = await listOnlineUsers(updateTimeInMs);
+
+//   // FIX ME: online user number is sometimes returned 0 from db
+//   // prevent showing 0 online users
+//   if (numberOfOnlineUsers > 0) {
+//     setCurrentlyOnline(numberOfOnlineUsers);  // FIX ME [REACT > VANILLA JS]
+//   } else {
+//     setCurrentlyOnline(1);  // FIX ME [REACT > VANILLA JS]
+//   }
+// };

@@ -65,6 +65,7 @@ body {
     overflow: hidden;
     font-family: sans-serif;
 
+    transition: background-color 0.1s ease;
 }
 
 main { 
@@ -131,6 +132,8 @@ header {
 .text {
     font-size: var(--font-h2);
     font-family: var(--font-1);
+
+    transition: color 0.1s ease;
 }
 
 .header__container {
@@ -269,6 +272,7 @@ header {
 /* OVERLAY */
 
 .overlay {
+    display: none;
     position: absolute;
     z-index: 100;
     top: 94svh;
