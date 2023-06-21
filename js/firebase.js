@@ -250,9 +250,10 @@ const submitBtn = document.getElementById('submit-btn');
 // VARIABLE FOR DATA VALUE
 const eventTrigger = 'input';/* 'input';*/
 
-// THROTTLE FUNCTION
+// * THROTTLE FUNCTION USED BY THE PARAMETER INPUTS
 // https://jsfiddle.net/jonathansampson/m7G64/
 
+// ^ original function used... (check JS Fiddle)
 // Allow callback to run at most 1 time per 100ms
 // window.addEventListener("resize", throttle(callback, 100));
 // window.addEventListener("resize", callback2);
@@ -279,8 +280,9 @@ function throttle (callback, limit) {
     }
 }
 
+// * PARAMETERS CHANGED BY USER A
 
-// CHANGE BACKGROUND VALUE
+// ^ CHANGE BACKGROUND VALUE
 const backgroundColorInput = document.getElementById('colorBg');
 
 function changeBackgroundColor () {
@@ -292,21 +294,7 @@ function changeBackgroundColor () {
 // add / replace color on form submit
 backgroundColorInput.addEventListener(eventTrigger, throttle(changeBackgroundColor, 100));
 
-
-// CHANGE TEXT COLOR
-const textColorInput = document.getElementById('colorText');
-
-function changeTextColor () {
-  const textColor = textColorInput.value;
-  // console.count("input")
-  addValue('colortext', textColor);
-}
-
-// add / replace color on form submit
-textColorInput.addEventListener(eventTrigger, throttle(changeTextColor, 100));
-
-
-// LINE HEIGHT ON SLIDER SUBMIT
+// ^ CHANGE LINE HEIGHT
 const lineHeightInput = document.getElementById('rangeHeight');
 
 // Function that changes the text-size (which is throttled later on)
@@ -318,8 +306,34 @@ function changeLineHeight () {
 
 lineHeightInput.addEventListener(eventTrigger, throttle(changeLineHeight, 100));
 
+// ^ CHANGE TEXT SPACING
+const textSpaceInput = document.getElementById('rangeSpace');
 
-// CHANGE FONT SIZE INPUT
+// Function that changes the text-spacing (which is throttled later on)
+function changeTextSpacing () {
+  const textSpacing = textSpaceInput.value;
+  // console.count("TextSpacingThrottled input")
+  addValue('textspacing', textSpacing);
+}
+
+// change Text Spacing on slider submit
+textSpaceInput.addEventListener(eventTrigger, throttle(changeTextSpacing, 100));
+
+// * PARAMETERS CHANGED BY USER B 
+
+// ^ CHANGE TEXT COLOR
+const textColorInput = document.getElementById('colorText');
+
+function changeTextColor () {
+  const textColor = textColorInput.value;
+  // console.count("input")
+  addValue('colortext', textColor);
+}
+
+// add / replace color on form submit
+textColorInput.addEventListener(eventTrigger, throttle(changeTextColor, 100));
+
+// ^ CHANGE FONT SIZE INPUT
 // FORM FOR ADDIND / REPLACING RANGE SIZE
 const sizeInput = document.getElementById('rangeSize');
 
@@ -333,39 +347,25 @@ function changeTextSize () {
 // change Text size on slider submit
 sizeInput.addEventListener(eventTrigger, throttle(changeTextSize, 100));
 
-
-// CHANGE TEXT SPACING
-const textSpaceInput = document.getElementById('rangeSpace');
-
-function changeTextSpacing () {
-  const textSpacing = textSpaceInput.value;
-  // console.count("TextSpacingThrottled input")
-  addValue('textspacing', textSpacing);
-}
-
-// change Text Spacing on slider submit
-textSpaceInput.addEventListener(eventTrigger, throttle(changeTextSpacing, 100));
-
-
-// CHANGE LETTER SPACING
+// ^ CHANGE LETTER SPACING
 const textLetterInput = document.getElementById('rangeLetter');
 
+// Function that changes the letter-spacing (which is throttled later on)
 function changeLetterSpacing () {
   const textLetter = textLetterInput.value;
-  console.count("TextLetterThrottled input")
-  // addValue('letterspacing', textLetter);
+  //console.count("TextLetterThrottled input")
+  addValue('letterspacing', textLetter);
 }
 
 // change Text size on slider submit
 textLetterInput.addEventListener(eventTrigger, throttle(changeLetterSpacing, 100));
 
 
-// OTHER STUFF
 
-// FORM FOR ADDIND / REPLACING VALUES
-const valuesForm = document.getElementById('value-form');
-const valueIdInput = document.getElementById('value-id-input');
-const valueInput = document.getElementById('value-input');
+// // FORM FOR ADDIND / REPLACING VALUES
+// const valuesForm = document.getElementById('value-form');
+// const valueIdInput = document.getElementById('value-id-input');
+// const valueInput = document.getElementById('value-input');
 
 /* 
 // add / replace value id and value on form submit
@@ -379,19 +379,19 @@ valuesForm.addEventListener('submit', (event) => {
 });
 
 */
+// ^ Old Variant of the Value Submit without Throttling Function
+// // COLOR PICKER ADDING/REPLACING
+// const colorValueIdInput = document.getElementById('colorBg');
+// const colorId = "colorbg";
 
-// COLOR PICKER ADDING/REPLACING
-const colorValueIdInput = document.getElementById('colorBg');
-const colorId = "colorbg";
+// colorValueIdInput.addEventListener('submit', (event) => {
+//     event.preventDefault();
+//     const valueId = colorId;
+//     const value = valueInput.value;
+//     addValue(valueId, value);
+//     console.log(colorId);
 
-colorValueIdInput.addEventListener('submit', (event) => {
-    event.preventDefault();
-    const valueId = colorId;
-    const value = valueInput.value;
-    addValue(valueId, value);
-    console.log(colorId);
-
-});
+// });
 
 var currentUsers = 1;
 const userCounter = document.getElementById('userCounter');
@@ -404,6 +404,8 @@ userCounter.innerHTML = "USERS: " +currentUsers;
 
 
 
+
+// * USER AUTHENTIFICATION (SOME PARTS NEEDS TO BE REWRITTEN IN VANILLA JS FROM REACT)
 
 // // USER COUNTER
 
