@@ -16,7 +16,7 @@ import {
 // config
 const firebaseConfig = {
 
-  // // NEW DB API KEY
+  // * ALTERNATIVE DB API KEY (USE IF DB BREAKS)
   // apiKey: "AIzaSyCUGdgKzVb6_cJyav4V5U8EyO6iJNmZm0s",
   // authDomain: "co-lab-16feb.firebaseapp.com",
   // projectId: "co-lab-16feb",
@@ -26,7 +26,8 @@ const firebaseConfig = {
   // measurementId: "G-SQRV99ZX8S"
   
 
-//OLD DB API KEY
+
+  // * ORIGINAL DB API KEY
     apiKey: "AIzaSyD5fO7vcmtPVbsruyOrF-YDmhNDKGg0LlI",
     authDomain: "co-lab-prj.firebaseapp.com",
     projectId: "co-lab-prj",
@@ -45,6 +46,9 @@ const db = getFirestore(app);
 
 // COLLECTION REF
 const colRef = collection(db, 'data');
+
+
+// * UPDATES ON SNAPSHOT (EVERY TIME INPUT CHANGES -> UPDATES DB)
 
 // GET
 // GET COLOR BG UPDATES
@@ -85,7 +89,7 @@ const unsubscribeColorUpdates = onSnapshot(
 );
 
 // GET
-// GET COLOR TEXT UPDATES
+// GET TEXT COLOR UPDATES
 // subscribe to realtime updates for specific value (e.g. color)
 const colorTextOutput = document.getElementById('colorText');
 const unsubscribeColorTextUpdates = onSnapshot(
@@ -247,7 +251,7 @@ async function addValue(id, value) {
 // VARIABLE FOR SUBMIT BUTTON
 const submitBtn = document.getElementById('submit-btn');
 
-// VARIABLE FOR DATA VALUE
+// * VARIABLE FOR DATA VALUE (INPUT)
 const eventTrigger = 'input';/* 'input';*/
 
 // * THROTTLE FUNCTION USED BY THE PARAMETER INPUTS
@@ -405,7 +409,7 @@ userCounter.innerHTML = "USERS: " +currentUsers;
 
 
 
-// * USER AUTHENTIFICATION (SOME PARTS NEEDS TO BE REWRITTEN IN VANILLA JS FROM REACT)
+// TODO USER AUTHENTIFICATION (SOME PARTS NEEDS TO BE REWRITTEN IN VANILLA JS FROM REACT)
 
 // // USER COUNTER
 
