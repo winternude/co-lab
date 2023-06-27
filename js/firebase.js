@@ -16,25 +16,25 @@ import {
 // config
 const firebaseConfig = {
 
-//  * ALTERNATIVE DB API KEY (USE IF DB BREAKS)
-  apiKey: "AIzaSyCUGdgKzVb6_cJyav4V5U8EyO6iJNmZm0s",
-  authDomain: "co-lab-16feb.firebaseapp.com",
-  projectId: "co-lab-16feb",
-  storageBucket: "co-lab-16feb.appspot.com",
-  messagingSenderId: "827072280835",
-  appId: "1:827072280835:web:210d9802f03c7286181136",
-  measurementId: "G-SQRV99ZX8S"
+// //  * ALTERNATIVE DB API KEY (USE IF DB BREAKS)
+//   apiKey: "AIzaSyCUGdgKzVb6_cJyav4V5U8EyO6iJNmZm0s",
+//   authDomain: "co-lab-16feb.firebaseapp.com",
+//   projectId: "co-lab-16feb",
+//   storageBucket: "co-lab-16feb.appspot.com",
+//   messagingSenderId: "827072280835",
+//   appId: "1:827072280835:web:210d9802f03c7286181136",
+//   measurementId: "G-SQRV99ZX8S"
   
 
 
-  // // * ORIGINAL DB API KEY
-  //   apiKey: "AIzaSyD5fO7vcmtPVbsruyOrF-YDmhNDKGg0LlI",
-  //   authDomain: "co-lab-prj.firebaseapp.com",
-  //   projectId: "co-lab-prj",
-  //   storageBucket: "co-lab-prj.appspot.com",
-  //   messagingSenderId: "983517005444",
-  //   appId: "1:983517005444:web:783087360a20eeb4bba4d1",
-  //   measurementId: "G-TBHR1NL4MF"
+  // * ORIGINAL DB API KEY
+    apiKey: "AIzaSyD5fO7vcmtPVbsruyOrF-YDmhNDKGg0LlI",
+    authDomain: "co-lab-prj.firebaseapp.com",
+    projectId: "co-lab-prj",
+    storageBucket: "co-lab-prj.appspot.com",
+    messagingSenderId: "983517005444",
+    appId: "1:983517005444:web:783087360a20eeb4bba4d1",
+    measurementId: "G-TBHR1NL4MF"
   
 };
 
